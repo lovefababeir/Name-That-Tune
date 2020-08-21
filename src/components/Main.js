@@ -1,41 +1,47 @@
 import React from "react";
 import Song from "./Song.js";
 import axios from "axios";
+import "../components/SongList";
+import { songList } from "../components/SongList.js";
+import "./Main.scss";
 
 class Main extends React.Component {
+	inputRef = React.createRef();
+
 	state = {
-		songList: [
-			{ song: "I Believe I Can Fly", movie: "Space Jam", id: 2296192 },
-			{
-				song: "Till I See You Again",
-				movie: "Fast and the Furious",
-				id: 2296192,
-			},
-		],
+		songList: songList,
 		selectedSong: {
 			song: "I Believe I Can Fly",
 			movie: "Space Jam",
 			id: 2296192,
 		},
 		points: 0,
+		total: 0,
+		message: null,
 	};
 
 	checkAnswer = evt => {
 		evt.preventDefault();
+
 		const answer = evt.target.answer.value;
-		// console.log(
-		// 	answer.toLowerCase(),
-		// 	this.state.selectedSong.movie.toLowerCase()
-		// );
 		if (answer.toLowerCase() === this.state.selectedSong.movie.toLowerCase()) {
-			this.setState.points = this.state.points + 1;
-			console.log("points:", this.state.points);
+			this.setState({
+				points: this.state.points + 1,
+				total: this.state.total + 1,
+				message: "You got it!",
+			});
 		} else {
-			console.log("sorry not working");
+			this.setState({
+				total: this.state.total + 1,
+				message: "Sorry incorrect",
+			});
 		}
+		this.inputRef.current.value = "";
 	};
 
-	songPlaying = id => {
+	songPlaying = (id, index) => {
+		const song = this.state.songList[index];
+
 		axios
 			.get(`https://deezerdevs-deezer.p.rapidapi.com/track/${id}`, {
 				headers: {
@@ -47,32 +53,74 @@ class Main extends React.Component {
 				},
 			})
 			.then(result => {
-				console.log("got it!:", result.data);
+				// console.log("got it!:", result.data.preview);
+				this.setState({
+					selectedSong: {
+						song: song.song,
+						movie: song.movie,
+						id: id,
+						url: result.data.preview,
+					},
+				});
+				console.log(this.state.selectedSong);
 			})
 			.catch(err => {
 				console.log("Could not complete GET request", err);
 			});
+
+		let list = this.state.songList;
+		list.splice(index, 1);
+		this.setState({ songList: list });
+		console.log("songList:", this.state.songList);
+	};
+
+	nextSong = () => {
+		const selectedIndex = Math.floor(
+			Math.random() * this.state.songList.length
+		);
+		const selectedId = this.state.songList[selectedIndex].id;
+
+		this.songPlaying(selectedId, selectedIndex);
+		this.setState({ message: "" });
 	};
 
 	render() {
 		return (
-			<>
-				<h1>This was the theme song for what movie?</h1>
+			<div className="outerBox">
+				<h1>Guess the Movie or T.V. Show</h1>
 				<form onSubmit={this.checkAnswer}>
-					<Song />
+					{this.state.selectedSong.url && (
+						<Song url={this.state.selectedSong.url} />
+					)}
 					<input
+						className="input"
 						type="text"
 						name="answer"
 						placeholder="Insert Movie Title Here"
+						ref={this.inputRef}
+						autoComplete="off"
 					></input>
-					<input type="submit" name="enterBtn"></input>
+					<input type="submit" name="enterBtn">
+						{this.state.button}
+					</input>
+					<h4>{this.state.message}</h4>
+					<h3>
+						Your Score {this.state.points}/{this.state.total}
+					</h3>
 				</form>
-			</>
+				<button
+					onClick={() => {
+						this.nextSong();
+					}}
+				>
+					Next Song
+				</button>
+			</div>
 		);
 	}
 
 	componentDidMount() {
-		this.songPlaying(this.state.selectedSong.id);
+		this.nextSong();
 	}
 
 	// componentDidUpdate(prevProps) {}
