@@ -5,7 +5,7 @@ import "./App.css";
 function App() {
 	return (
 		<>
-			<header>WElCOME TO _________</header>
+			<header>WELCOME TO _________</header>
 			<Main />
 		</>
 	);

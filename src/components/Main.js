@@ -1,5 +1,6 @@
 import React from "react";
 import Song from "./Song.js";
+import axios from "axios";
 
 class Main extends React.Component {
 	state = {
@@ -27,14 +28,31 @@ class Main extends React.Component {
 		// 	this.state.selectedSong.movie.toLowerCase()
 		// );
 		if (answer.toLowerCase() === this.state.selectedSong.movie.toLowerCase()) {
-			this.setState.points = this.state.points++;
+			this.setState.points = this.state.points + 1;
 			console.log("points:", this.state.points);
 		} else {
 			console.log("sorry not working");
 		}
 	};
 
-	songPlaying = id => {};
+	songPlaying = id => {
+		axios
+			.get(`https://deezerdevs-deezer.p.rapidapi.com/track/${id}`, {
+				headers: {
+					"content-type": "application/octet-stream",
+					"x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+					"x-rapidapi-key":
+						"ce143ba573msh6e12bd67b4aab48p123d44jsndda60e32671d",
+					useQueryString: true,
+				},
+			})
+			.then(result => {
+				console.log("got it!:", result.data);
+			})
+			.catch(err => {
+				console.log("Could not complete GET request", err);
+			});
+	};
 
 	render() {
 		return (
@@ -53,9 +71,11 @@ class Main extends React.Component {
 		);
 	}
 
-	// ComponentDidMount() {}
+	componentDidMount() {
+		this.songPlaying(this.state.selectedSong.id);
+	}
 
-	// ComponentDidUpdate(prevProps) {}
+	// componentDidUpdate(prevProps) {}
 }
 
 export default Main;
