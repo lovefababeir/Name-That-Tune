@@ -87,7 +87,7 @@ class Main extends React.Component {
 	render() {
 		return (
 			<div className="outerBox">
-				<h1>Guess the Movie or T.V. Show</h1>
+				<h1>Guess the Movie or TV Show</h1>
 				<form onSubmit={this.checkAnswer}>
 					{this.state.selectedSong.url && (
 						<Song url={this.state.selectedSong.url} />
@@ -105,7 +105,7 @@ class Main extends React.Component {
 					</input>
 					<h4>{this.state.message}</h4>
 					<h3>
-						Your Score {this.state.points}/{this.state.total}
+						Your Score: {this.state.points}/{this.state.total}
 					</h3>
 				</form>
 				<button
