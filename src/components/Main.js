@@ -89,7 +89,11 @@ class Main extends React.Component {
 		return (
 			<div className="outerBox">
 				<h1 className="game-head">Name that Tüne</h1>
-				<h5 className="game-desc">We've created a game of theme songs from popular TV shows and Movies throughout the years. Have you been paying attention to your favourite shows and movies? How well do you think you know your favourite shows and movies?</h5>
+				<p className="game-desc">
+					<h3>How well do you think you know your favourites?</h3>
+					We've created a game of theme songs from popular TV shows and Movies throughout the years. <br/>
+					Have you been paying attention to your favourite shows and movies?<br/>
+				</p>
 				<form classname="form" onSubmit={this.checkAnswer}>
 					{this.state.selectedSong.url && (
 						<Song url={this.state.selectedSong.url} />
