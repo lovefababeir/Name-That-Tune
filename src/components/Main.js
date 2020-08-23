@@ -4,6 +4,7 @@ import axios from "axios";
 import "../components/SongList";
 import { songList } from "../components/SongList.js";
 import "./Main.scss";
+import "./Song.scss";
 
 class Main extends React.Component {
 	inputRef = React.createRef();
@@ -87,8 +88,8 @@ class Main extends React.Component {
 	render() {
 		return (
 			<div className="outerBox">
-				<h1>Name that Tüne</h1>
-				<h5>We've created a game of theme songs from popular TV shows and Movies throughout the years. Have you been paying attention to your favourite shows and movies? How well do you think you know your favourite shows and movies?</h5>
+				<h1 className="game-head">Name that Tüne</h1>
+				<h5 className="game-desc">We've created a game of theme songs from popular TV shows and Movies throughout the years. Have you been paying attention to your favourite shows and movies? How well do you think you know your favourite shows and movies?</h5>
 				<form classname="form" onSubmit={this.checkAnswer}>
 					{this.state.selectedSong.url && (
 						<Song url={this.state.selectedSong.url} />
@@ -97,12 +98,12 @@ class Main extends React.Component {
 						className="input"
 						type="text"
 						name="answer"
-						placeholder="Insert Movie Title Here"
+						placeholder="Shoot your Shot - Enter your guess here"
 						ref={this.inputRef}
 						autoComplete="off"
 					></input>
-					<input className="submitbtn" type="submit" name="enterBtn">
-						{this.state.button}
+					<input className="submitbtn" type="submit" value="Is that your final answer?" name="enterBtn" >
+						{this.state.button} 
 					</input>
 					<h4>{this.state.message}</h4>
 					<h3 className="score">
@@ -114,7 +115,7 @@ class Main extends React.Component {
 						this.nextSong();
 					}}
 				>
-					Next Song
+					I'm ready for the next one!
 				</button>
 			</div>
 		);

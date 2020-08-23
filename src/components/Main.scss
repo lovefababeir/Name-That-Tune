@@ -12,14 +12,16 @@
 	color: white;
 }
 
-h1 {
+.game-head {
 	font-size: 30px;
+	position: relative;
 	margin: 1rem auto;
 	font-family: "Betty Lavea";
 }
 
-h5 {
+.game-desc {
 	font-family: "Dark Black";
+	position: relative;
 	margin: 1rem 5rem;
 	padding: 1rem 3rem;
 	background-color: rgba(0,0,0,0.50);
@@ -33,23 +35,24 @@ h5 {
 	align-items: center;
 	width: 80vw;
 	margin: 2rem auto;
-	background-color: white;
 	background-image: url(../assets/image/Best-Music-Podcasts-featured-image-1000.jpg);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover, contain;
-	opacity: 70%;
+	opacity: 75%;
 	padding: 1rem;
 }
 
 .form {
 	height: 10rem;
+	position: relative;
 }
 
 .input {
+	position: relative;
 	width: 50%;
 	height: 2rem;
-	margin: 1rem 4.5rem;
+	margin: 1rem 3rem;
 	text-align: center;
 	color: black;
 	border-radius: 5rem;
@@ -58,11 +61,14 @@ h5 {
 
 .score {
 	text-align: center;
+	position: relative;
 	margin: 0 auto 1rem auto;
+	position: relative;
 }
 
 .next-song{
 	background-color: yellow;
+	position: relative;
 	border-radius: 5rem;
 	border: 1px whitesmoke solid;
 	padding: 1rem;
@@ -71,6 +77,7 @@ h5 {
 }
 
 .submitbtn {
+	position: relative;
 	background-color: salmon;
 	border-radius: 5rem;
 	border: 1px white solid;
@@ -78,6 +85,7 @@ h5 {
 }
 
 .playerbox {
+	position: relative;
 	height: 30%;
 	width: 50%;
 	border-radius: 5rem;
