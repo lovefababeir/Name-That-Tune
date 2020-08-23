@@ -5,8 +5,8 @@ import "./Song.scss";
 const Song = props => {
 	console.log("got song");
 	return (
-		<div>
-			<ReactPlayer url={props.url} controls={true} className="player" />
+		<div classname="playerbox">
+			<ReactPlayer className="player" url={props.url} controls={true} />
 		</div>
 	);
 };

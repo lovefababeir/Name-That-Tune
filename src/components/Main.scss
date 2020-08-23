@@ -1,22 +1,84 @@
+@font-face {
+	font-family: "Betty Lavea";
+	src: url('../assets/font/betty-lavea/BettyLavea.otf') format("otf");
+}
+
+@font-face {
+	font-family: "Dark Black";
+	src: url('../assets/font/dark-black/Dark\ &\ Black\ D.otf') format("otf");
+}
+
+* {
+	color: white;
+}
+
+h1 {
+	font-size: 30px;
+	margin: 1rem auto;
+	font-family: "Betty Lavea";
+}
+
+h5 {
+	font-family: "Dark Black";
+	margin: 1rem 5rem;
+	padding: 1rem 3rem;
+	background-color: rgba(0,0,0,0.50);
+	border: 1px whitesmoke solid;
+	border-radius: 5rem;
+}
+
 .outerBox {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	width: 80vw;
 	margin: 2rem auto;
 	background-color: white;
-	background-image: url(./music_image.jpg);
-	background-position-x: 3rem;
-	background-size: 40%;
-	// opacity: 20%
+	background-image: url(../assets/image/Best-Music-Podcasts-featured-image-1000.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover, contain;
+	opacity: 70%;
 	padding: 1rem;
-	display: flex;
-	justify-content: center;
+}
+
+.form {
+	height: 10rem;
 }
 
 .input {
 	width: 50%;
 	height: 2rem;
+	margin: 1rem 4.5rem;
+	text-align: center;
+	color: black;
+	border-radius: 5rem;
+	border: 1px whitesmoke solid;
+}
+
+.score {
+	text-align: center;
+	margin: 0 auto 1rem auto;
+}
+
+.next-song{
+	background-color: yellow;
+	border-radius: 5rem;
+	border: 1px whitesmoke solid;
+	padding: 1rem;
+	color: black;
 	margin: 1rem;
 }
 
-h1 {
-	color: black;
+.submitbtn {
+	background-color: salmon;
+	border-radius: 5rem;
+	border: 1px white solid;
+	padding: 1rem;
+}
+
+.playerbox {
+	height: 30%;
+	width: 50%;
+	border-radius: 5rem;
 }

@@ -28,12 +28,12 @@ class Main extends React.Component {
 			this.setState({
 				points: this.state.points + 1,
 				total: this.state.total + 1,
-				message: "You got it!",
+				message: "Great job! You got it!",
 			});
 		} else {
 			this.setState({
 				total: this.state.total + 1,
-				message: "Sorry incorrect",
+				message: "Sorry, your guess was incorrect. please try again!",
 			});
 		}
 		this.inputRef.current.value = "";
@@ -87,8 +87,9 @@ class Main extends React.Component {
 	render() {
 		return (
 			<div className="outerBox">
-				<h1>Guess the Movie or TV Show</h1>
-				<form onSubmit={this.checkAnswer}>
+				<h1>Name that Tüne</h1>
+				<h5>We've created a game of theme songs from popular TV shows and Movies throughout the years. Have you been paying attention to your favourite shows and movies? How well do you think you know your favourite shows and movies?</h5>
+				<form classname="form" onSubmit={this.checkAnswer}>
 					{this.state.selectedSong.url && (
 						<Song url={this.state.selectedSong.url} />
 					)}
@@ -100,15 +101,15 @@ class Main extends React.Component {
 						ref={this.inputRef}
 						autoComplete="off"
 					></input>
-					<input type="submit" name="enterBtn">
+					<input className="submitbtn" type="submit" name="enterBtn">
 						{this.state.button}
 					</input>
 					<h4>{this.state.message}</h4>
-					<h3>
+					<h3 className="score">
 						Your Score: {this.state.points}/{this.state.total}
 					</h3>
 				</form>
-				<button
+				<button className="next-song"
 					onClick={() => {
 						this.nextSong();
 					}}
